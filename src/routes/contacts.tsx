@@ -8,7 +8,7 @@ export default function Contact() {
         twitter: string;
         notes: string;
         favorite: boolean;
-        id: number;
+        id: string;
     } = {
         first: "Your",
         last: "Last",
@@ -16,7 +16,7 @@ export default function Contact() {
         twitter: "your_handle",
         notes: "Some notes",
         favorite: true,
-        id: 1
+        id: "1"
     }
 
     return (
