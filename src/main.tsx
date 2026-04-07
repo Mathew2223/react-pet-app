@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 import Root, { loader as rootLoader, action as rootAction } from './routes/root';
 import ErrorPage from './error-page';
-import Contact, { loader as contactLoader } from './routes/contacts';
+import Contact, { loader as contactLoader, action as contactAction } from './routes/contacts';
 import EditContact, { action as editAction } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
+import Index from './routes';
 import './index.css'
 
 const router = createBrowserRouter([
@@ -19,10 +20,12 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
+      { index: true, element: <Index /> },
       {
         path: "contacts/:contactId",
         element: <Contact />,
         loader: contactLoader,
+        action: contactAction,
       },
       {
         path: "contacts/:contactId/edit",
@@ -32,8 +35,9 @@ const router = createBrowserRouter([
       },
       {
         path: "contacts/:contactId/destroy",
-        action: destroyAction
-      }
+        action: destroyAction,
+        errorElement: <div>Oops! There was an error.</div>,
+      },
     ],
   },
 ]);
